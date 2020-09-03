@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const config = require("./config.json");
-const { Client, MessageAttachment } = require('discord.js');
 
 const client = new Discord.Client();
 
@@ -30,7 +29,12 @@ client.on("message", function(message) {
   }  
 
   else if (command === "smile") {
-    const attachment = new MessageAttachment('https://i.pinimg.com/originals/0d/b5/eb/0db5eb21866e4e3063a2e2c85ca4e77c.jpg');
+    const attachment = new Discord.MessageAttachment('https://i.pinimg.com/originals/0d/b5/eb/0db5eb21866e4e3063a2e2c85ca4e77c.jpg');
+    message.channel.send(attachment);
+  }  
+
+  else if (command === "smug") {
+    const attachment = new Discord.MessageAttachment('https://cdn.discordapp.com/attachments/457008618110451722/745677591855366174/eeveewatersmug.png');
     message.channel.send(attachment);
   }  
 
@@ -39,7 +43,9 @@ client.on("message", function(message) {
     !ping: returns ping
     !sum: sums up numbers provided
     !avatar: shows big avatar
-    !smile: >:)`);
+    !smile: >:)
+    !smug: water stone
+    !help: display all current commmands`);
   }
 
   else {
