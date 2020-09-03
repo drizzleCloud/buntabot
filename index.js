@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const config = require("./config.json");
 
 const client = new Discord.Client();
+const fs = require('fs');
 
 const prefix = "!";
 
@@ -38,6 +39,29 @@ client.on("message", function(message) {
     message.channel.send(attachment);
   }  
 
+
+
+  else if (command === "gorilla") {
+    const attachment = new Discord.MessageAttachment('https://dpatlarge.files.wordpress.com/2013/10/just-gorillas-havin-fun.gif?w=584');
+    message.channel.send(attachment);
+  }  
+
+  else if (message.content === '!memes') {
+    // Get the buffer from the 'memes.txt', assuming that the file exists
+    const buffer = fs.readFileSync('./memes.txt');
+
+    /**
+     * Create the attachment using MessageAttachment,
+     * overwritting the default file name to 'memes.txt'
+     * Read more about it over at
+     * http://discord.js.org/#/docs/main/master/class/MessageAttachment
+     */
+    const attachment = new Discord.MessageAttachment(buffer, 'memes.txt');
+    // Send the attachment in the message channel with a content
+    message.channel.send(`${message.author}, here are your memes!`, attachment);
+  }
+
+
   else if (command === "help") {
     message.reply(`
     !ping: returns ping
@@ -45,7 +69,8 @@ client.on("message", function(message) {
     !avatar: shows big avatar
     !smile: >:)
     !smug: water stone
-    !help: display all current commmands`);
+    !help: display all current commmands
+    gorilla`);
   }
 
   else {
